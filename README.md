@@ -1,44 +1,46 @@
-# nexus-syndicate-db
-Repositorio oficial del proyecto Nexus Syndicate 
-# Nexus Syndicate — Plataforma de Gestión de Torneos de eSports
-## 📌 Visión General
-**Nexus Syndicate** es un sistema de base de datos relacional diseñado para centralizar, automatizar y estructurar la administración de ligas y torneos competitivos de eSports. La plataforma permite la gestión de videojuegos, equipos, jugadores, modalidades de juego, árbitros, partidas y el registro estadístico detallado del rendimiento de los competidores.
+# 🏆 Nexus Syndicate — Database Management Platform
 
-Este proyecto forma parte de la asignatura **Bases de Datos 1** en **CESUN Universidad**.
+Bienvenido al repositorio oficial del modelo de base de datos para **Nexus Syndicate**, una plataforma integral de gestión de torneos de eSports y ligas competitivas.
 
----
 
-## 🛠️ Tecnologías y Herramientas Utilizadas
-* **Gestor de Base de Datos:** MySQL Workbench 8.0 / MySQL Server.
-* **Gestión de Proyecto (Scrum):** Jira Software.
-* **Documentación y Wiki:** Confluence.
-* **Control de Versiones:** GitHub.
-* **Diseño del Diagrama:** Lucidchart / MySQL Workbench.
+## 👥 Integrantes del Proyecto
+* **Óscar Cuin** — *Project Manager / Scrum Master*
+* **Derik Hernandez** — *Technical Lead / Database Engineer*
 
 ---
 
-## 📐 Estructura del Modelo Relacional
-El modelo relacional consta de **9 tablas** interrelacionadas y normalizadas (hasta la 3FN):
+##  Arquitectura de la Base de Datos (10 Tablas - 3NF)
+El modelo relacional ha sido normalizado cumpliendo estrictamente con la **Tercera Forma Normal (3NF)** y consta de las siguientes 10 entidades:
 
-1. **Juego:** Catálogo de videojuegos soportados en la plataforma.
-2. **Modalidad:** Tipos de competencia (1v1, 5v5, Battle Royale, etc.).
-3. **Modalidad_Juego:** Tabla intermedia que conecta los juegos con sus modalidades disponibles.
-4. **Equipo:** Registro de clubes y organizaciones participantes.
-5. **Jugador:** Información de los pro-players pertenecientes a cada equipo.
-6. **Árbitro:** Registro del personal encargado de supervisar las partidas.
-7. **Torneo:** Eventos competitivos organizados en la plataforma.
-8. **Partida:** Enfrentamientos específicos dentro de cada torneo.
-9. **Estadística:** Registro detallado de rendimiento individual (KDA, puntos, bajas, asistencias).
-
----
-
-## 👥 Equipo de Desarrollo
-* **Oscar Manuel Cuin Colin** 
-* **Derik Hernández** 
+1. `juego` (Catálogo de videojuegos)
+2. `modalidad` (Formatos de competencia: 1v1, 3v3, 5v5)
+3. `fase` (Catálogo de etapas: Grupos, Cuartos, Semifinal, Final)
+4. `arbitro` (Personal encargado de supervisar partidas)
+5. `equipo` (Organizaciones/Equipos participantes)
+6. `modalidad de juego` (Tabla intermedia de configuración)
+7. `jugador` (Jugadores registrados vinculados a sus equipos)
+8. `partida` (Encuentros programados por fase y árbitro)
+9. `torneo` (Competencias organizadas con bolsa de premios y reglas)
+10. `estadistica` (Métricas de desempeño K/D/A por jugador y partida)
 
 ---
 
-## 📂 Contenido del Repositorio
-```text
-├── README.md              # Descripción y documentación general del proyecto
-└── new diagrama.mwb       # Modelo físico en MySQL Workbench
+## Archivos del Repositorio
+
+| Archivo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `nexus_syndicate_schema.sql` | DDL | Script de creación del esquema, tablas y llaves foráneas. |
+| `nexus_syndicate_data.sql` | DML | Script de inserción de datos de prueba (36+ registros). |
+| `nuevo diagrama.mwb.bak.zip` | MWB | Respaldo del modelo Workbench. |
+| `LÉAME.md` | Doc | Documentación del repositorio. |
+
+---
+
+##  Instrucciones de Ejecución en MySQL Workbench
+
+Para desplegar la base de datos localmente, ejecuta los scripts en el siguiente **orden estricto**:
+
+1. **Creación del Esquema (DDL):**
+   ```sql
+   -- Ejecutar primero en MySQL Workbench
+   SOURCE nexus_syndicate_schema.sql;
